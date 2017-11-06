@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:UserSearch"
+             x:Class="UserSearch.MainPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="3">
+            <Label
+            x:Name="title" FontSize="18"
+            Text="Búsqueda de usuarios" TextColor="Black"
+            HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Label
+               x:Name="selectPathLabel" FontSize="14"
+               Text="Seleccione un fichero: " TextColor="Black"
+               HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+               WidthRequest="100"/>
+
+                <Button
+                x:Name="searchButton" HorizontalOptions="EndAndExpand"
+                Text="Examinar" TextColor="Black"
+                BackgroundColor="Green"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label  
+                x:Name="searchNameLbl" FontSize="14" 
+                Text="Búsqueda: " TextColor="Black" 
+                HorizontalOptions="Fill"
+                WidthRequest="100"/>
+
+                <Entry
+                x:Name="searchNameBox" FontSize="14" 
+                Placeholder="Escriba aquí"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                Keyboard="Numeric"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Label 
+                x:Name="minimumAgeLabel" FontSize="14" 
+                Text="Edad mínima: " TextColor="Black" 
+                HorizontalOptions="Fill" WidthRequest="100"/>
+
+                <Entry
+                x:Name="minimumAgeBox" FontSize="14" 
+                Placeholder="Escriba aquí"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                Keyboard="Numeric"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label 
+                x:Name="enunciadoMaximaEdad" FontSize="14" 
+                Text="Maxima Edad: " TextColor="Black" 
+                HorizontalOptions="Fill" WidthRequest="100" />
+                <Entry
+                x:Name="txtMaxEdad" FontSize="14" 
+                Placeholder="escribir aquí la edad máxima..."
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"/>
+            </StackLayout>
+
+            <ListView x:Name="idListaContacto"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
