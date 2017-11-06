@@ -13,6 +13,7 @@ namespace UserSearch
 {
     public partial class MainPage : ContentPage
     {
+        int a = 0;
         ObservableCollection<Contacto> contactos = new ObservableCollection<Contacto>();
 
 
