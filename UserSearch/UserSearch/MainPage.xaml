@@ -18,7 +18,7 @@
                WidthRequest="100"/>
 
                 <Button
-                x:Name="searchButton" HorizontalOptions="EndAndExpand"
+                x:Name="examineButton" HorizontalOptions="EndAndExpand"
                 Text="Examinar" TextColor="Black"
                 BackgroundColor="Green"/>
             </StackLayout>
@@ -32,10 +32,9 @@
 
                 <Entry
                 x:Name="searchNameBox" FontSize="14" 
-                Placeholder="Escriba aquí"
+                Placeholder="Escriba aquí el nombre a buscar"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="Center"
-                Keyboard="Numeric"/>
+                VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
@@ -47,10 +46,9 @@
 
                 <Entry
                 x:Name="minimumAgeBox" FontSize="14" 
-                Placeholder="Escriba aquí"
+                Placeholder="Escriba aquí la edad mínima"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="Center"
-                Keyboard="Numeric"/>
+                VerticalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
@@ -60,11 +58,17 @@
                 HorizontalOptions="Fill" WidthRequest="100" />
                 <Entry
                 x:Name="txtMaxEdad" FontSize="14" 
-                Placeholder="escribir aquí la edad máxima..."
+                Placeholder="Escriba aquí la edad máxima"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Center"/>
             </StackLayout>
 
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="searchButton" 
+                        HorizontalOptions="CenterAndExpand" 
+                        VerticalOptions="Center"
+                        Text="Aplicar criterio"/>
+            </StackLayout>
             <ListView x:Name="idListaContacto"/>
             
         </StackLayout>
