@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xamarin.Forms;
 
 namespace UserSearch
@@ -20,6 +21,8 @@ namespace UserSearch
         MatchCollection matches;
 
         bool dataHasBeenLoaded = false;
+        int indexSelected;
+        bool txtLoaded = false, xmlLoaded = false;
 
         public MainPage()
         {
@@ -28,13 +31,49 @@ namespace UserSearch
             examineButton.Clicked += (sender, args) =>
             {
                 if (!dataHasBeenLoaded) { 
-                readandInsertContacts();
+                    if(seleccionarTipoFichero.SelectedIndex == 0)
+                    {
+                        indexSelected = seleccionarTipoFichero.SelectedIndex;
+                        //Método de lectura desde un fichero Txt
+                        ReadandInsertContacts();
+                    }
+                    //Como solo tenemos dos opciones, con el else nos vale, en caso de aniadir
+                    //mas en un futuro, hacer un switch
+                    else
+                    {
+                        indexSelected = seleccionarTipoFichero.SelectedIndex;
+                        //Método de lectura desde XML
+                        ReadAndInsertFromXML();
+                    }
+                
                 idListaContacto.ItemsSource = contactos;
                 dataHasBeenLoaded = true;
                 }
+                //Comprobaciones por si tras tener cargado el .txt, preferimos cargar desde el .xml
                 else
                 {
-                    DisplayAlert("Error", "El fichero ya se encuentra cargado", "Aceptar");
+                    if(seleccionarTipoFichero.SelectedIndex != indexSelected)
+                    {
+                        
+                        if(seleccionarTipoFichero.SelectedIndex == 0)
+                        {
+                            contactos.Clear();
+                            ReadandInsertContacts();
+                            idListaContacto.ItemsSource = contactos;
+                            indexSelected = seleccionarTipoFichero.SelectedIndex;
+                        }
+                        else if(seleccionarTipoFichero.SelectedIndex == 1)
+                        {
+                            contactos.Clear();
+                            ReadAndInsertFromXML();
+                            idListaContacto.ItemsSource = contactos;
+                            indexSelected = seleccionarTipoFichero.SelectedIndex;
+                        }
+                    }
+                    else
+                    {
+                        DisplayAlert("Error", "El fichero ya se encuentra cargado", "Aceptar");
+                    }
                 }
             };
 
@@ -46,12 +85,15 @@ namespace UserSearch
                 }
                 else
                 {
-                    buscar();
+                    Buscar();
                 }
             };
         }
-
-        public void readandInsertContacts()
+        /// <summary>
+        /// Método encargado de convertir cada elemento en una propiedad de la clase contacto
+        /// para crear los objetos y posteriormente guardarlos en un ArrayList.
+        /// </summary>
+        public void ReadandInsertContacts()
         {
             int counter = 0;
             string line;
@@ -91,11 +133,24 @@ namespace UserSearch
             }
         }
 
+        public void ReadAndInsertFromXML()
+        {
+            string ruta = "UserSearch.Assets.Info.xml";
+            var assembly = typeof(MainPage).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream(ruta);
+            var doc = XDocument.Load(stream);
+
+            foreach (XElement element in doc.Root.Elements())
+            {
+                contactos.Add(new Contacto(element.Element("NOMBRE").Value, int.Parse(element.Element("EDAD").Value.ToString()), element.Element("DNI").Value));
+            }
+        }
+
         /// <summary>
-        /// Metodo encargado de realizar la busqueda, teniendo en cuenta los diferentes patrones
-        /// de busqueda y tratando de controlar todos los posibles fallos.
+        /// Método encargado de realizar la búsqueda, teniendo en cuenta los diferentes patrones
+        /// de búsqueda y tratando de controlar todos los posibles fallos.
         /// </summary>
-        private void buscar()
+        private void Buscar()
         {
 
             int edad1, edad2;
@@ -119,24 +174,24 @@ namespace UserSearch
                 searchNameBox.Text = "";
             }
             
-            //Si no hay campos vacios
+            //Si no hay campos vacíos
             if (!txtMaxEdad.Text.Equals("") && !minimumAgeBox.Text.Equals("") && !searchNameBox.Text.Equals(""))
             {
-                //Se hace control numerico
-                controlNumerico();
+                //Se hace control numérico
+                ControlNumerico();
             }
 
             else if (!txtMaxEdad.Text.Equals("") && !minimumAgeBox.Text.Equals(""))
             {
-                //Se hace control numerico
-                controlNumerico();
+                //Se hace control numérico
+                ControlNumerico();
             }
             else if (!txtMaxEdad.Text.Equals(""))
             {
                 if (int.TryParse(txtMaxEdad.Text.Trim(), out edad1))
                 {
-                    //Se hace control numerico
-                    realizarBusqueda();
+                    //Se hace control numérico
+                    RealizarBusqueda();
                 }
                 else
                 {
@@ -148,8 +203,8 @@ namespace UserSearch
             {
                 if (int.TryParse(minimumAgeBox.Text.Trim(), out edad1))
                 {
-                    //Se hace control numerico
-                    realizarBusqueda();
+                    //Se hace control numérico
+                    RealizarBusqueda();
                 }
                 else
                 {
@@ -160,11 +215,11 @@ namespace UserSearch
             }
             else
             {
-                realizarBusqueda();
+                RealizarBusqueda();
             }
         }
 
-        private void controlNumerico()
+        private void ControlNumerico()
         {
             int edad1, edad2;
 
@@ -176,7 +231,7 @@ namespace UserSearch
                 }
                 else
                 {
-                    realizarBusqueda();
+                    RealizarBusqueda();
                 }
             }
             else
@@ -187,14 +242,14 @@ namespace UserSearch
         }
 
         /// <summary>
-        /// Realiza la busqueda de verdad
+        /// Realiza la búsqueda de verdad
         /// </summary>
-        private void realizarBusqueda()
+        private void RealizarBusqueda()
         {
             //Limpiamos los contactos cargados para volver a cargar los correctos
             busquedaContactos.Clear();
             //Se obtiene resultado de la busqueda con los valores introducidos y se carga en listView
-            buscarContacto(searchNameBox.Text);
+            BuscarContacto(searchNameBox.Text);
             //Se rellena listView
             cargarListView();
         }
@@ -211,29 +266,29 @@ namespace UserSearch
         /// Implementa los filtros para obtener una list de contactos a mostrar
         /// </summary>
         /// <param name="filtro"></param>
-        public void buscarContacto(string filtro)
+        public void BuscarContacto(string filtro)
         {
             /// Recorremos el array contactos y si encontramos una coincidencia la añadimos al arraylist resultado
             for (int i = 0; i < contactos.Count; i++)
             {
-                if (comprobarNombre(contactos[i], filtro))
+                if (ComprobarNombre(contactos[i], filtro))
                 {
                     busquedaContactos.Add(contactos[i]);
                 }
             }
 
-            //Si no se encontro ninguna coincidencia se informa
+            //Si no se encontró ninguna coincidencia se informa
             if (busquedaContactos.Count == 0) {
                 DisplayAlert("Fin de la busqueda" , "No se encontro ninguna coincidencia, prueba de nuevo.", "Aceptar"); }
             }
 
         /// <summary>
-        /// Metodo que comprueba si el nombre del contacto tiene alguna coincidencia con el filtro de busqueda.
+        /// Método que comprueba si el nombre del contacto tiene alguna coincidencia con el filtro de búsqueda.
         /// </summary>
         /// <param name="contacto">El contacto a analizar.</param>
-        /// <param name="filtro">La cadena que queremos usar como filtro. Puede estar vacia. En ese caso, devolveremos siempre true.</param>
+        /// <param name="filtro">La cadena que queremos usar como filtro. Puede estar vacía. En ese caso, devolveremos siempre true.</param>
         /// <returns> Devuelve true si se ha encontrado coincidencia, devuelve false si no la encuentra.</returns>
-        public Boolean comprobarNombre(Contacto contacto, string filtro)
+        public Boolean ComprobarNombre(Contacto contacto, string filtro)
         {
             Boolean ok = false;
             Regex rgx = new Regex("%", RegexOptions.IgnoreCase);
@@ -245,59 +300,59 @@ namespace UserSearch
 
             matches = rgx.Matches(filtro);
 
-            /// Primero tenemos que controlar que en el filtro no hemos introducido mas de un %.
+            /// Primero tenemos que controlar que en el filtro no hemos introducido más de un %.
             if (matches.Count > 1)
             {
-                inputControl(searchNameBox, "No puede indicar más de un % en una busqueda.");
+                InputControl(searchNameBox, "No puede indicar más de un % en una busqueda.");
             }
             else
             {
-                /// Si no se ha escrito nada en el patron de busqueda, o solo se ha escrito %...
+                /// Si no se ha escrito nada en el patrón de búsqueda, o sólo se ha escrito %...
                 if (filtro.Trim().Equals("") || filtro.Trim().Equals("%"))
                 {
                     if (minimumAgeBox.Text.Trim().Length > 0 && txtMaxEdad.Text.Trim().Length == 0)
                     {
-                        ok = comprobarEdad(contacto, minimumAgeBox.Text.Trim(), true);
+                        ok = ComprobarEdad(contacto, minimumAgeBox.Text.Trim(), true);
                     }
                     else if (minimumAgeBox.Text.Trim().Length == 0 && txtMaxEdad.Text.Trim().Length > 0)
                     {
-                        ok = comprobarEdad(contacto, txtMaxEdad.Text.Trim(), false);
+                        ok = ComprobarEdad(contacto, txtMaxEdad.Text.Trim(), false);
                     }
                     else if (minimumAgeBox.Text.Trim().Length > 0 && txtMaxEdad.Text.Trim().Length > 0)
                     {
-                        ok = comprobarEdad(contacto, minimumAgeBox.Text.Trim(), txtMaxEdad.Text.Trim());
+                        ok = ComprobarEdad(contacto, minimumAgeBox.Text.Trim(), txtMaxEdad.Text.Trim());
                     }
                     else
                     {
                         ok = true;
                     }
                 }
-                /// Si el ultimo caracter es %...
+                /// Si el último caracter es %...
                 else if (filtro.Substring(filtro.Length - 1).Equals("%"))
                 {
-                    /// Quitamos el caracter % para poder usarlo como patron de busqueda.
+                    /// Quitamos el caracter % para poder usarlo como patrón de búsqueda.
                     filtro = filtro.Replace("%", "");
                     rgx = new Regex(String.Format("^" + filtro + ".*"), RegexOptions.IgnoreCase);
                     matches = rgx.Matches(contacto.Nombre);
-                    /// Si encuentra alguna coincidencia, devolvemos true siempre y cuando la edad tambien coincida.
+                    /// Si encuentra alguna coincidencia, devolvemos true siempre y cuando la edad también coincida.
                     if (matches.Count > 0 && minimumAgeBox.Text.Trim().Length > 0 && txtMaxEdad.Text.Trim().Length == 0)
                     {
-                        ok = comprobarEdad(contacto, minimumAgeBox.Text.Trim(), true);
+                        ok = ComprobarEdad(contacto, minimumAgeBox.Text.Trim(), true);
                     }
                     else if (matches.Count > 0 && minimumAgeBox.Text.Trim().Length == 0 && txtMaxEdad.Text.Trim().Length > 0)
                     {
-                        ok = comprobarEdad(contacto, txtMaxEdad.Text.Trim(), false);
+                        ok = ComprobarEdad(contacto, txtMaxEdad.Text.Trim(), false);
                     }
                     else if (matches.Count > 0 && minimumAgeBox.Text.Trim().Length > 0 && txtMaxEdad.Text.Trim().Length > 0)
                     {
-                        ok = comprobarEdad(contacto, minimumAgeBox.Text.Trim(), txtMaxEdad.Text.Trim());
+                        ok = ComprobarEdad(contacto, minimumAgeBox.Text.Trim(), txtMaxEdad.Text.Trim());
                     }
                     else if (matches.Count > 0)
                     {
                         ok = true;
                     }
                 }
-                /// Si en el patron de busqueda no hemos puesto como ultimo caracter un %...
+                /// Si en el patrón de búsqueda no hemos puesto como último carácter un %...
                 else
                 {
                     rgx = new Regex("^" + filtro + "$", RegexOptions.IgnoreCase);
@@ -305,15 +360,15 @@ namespace UserSearch
                     /// Si encuentra alguna coincidencia, devolvemos true siempre y cuando la edad tambien coincida.
                     if (matches.Count > 0 && minimumAgeBox.Text.Trim().Length > 0 && txtMaxEdad.Text.Trim().Length == 0)
                     {
-                        ok = comprobarEdad(contacto, minimumAgeBox.Text.Trim(), true);
+                        ok = ComprobarEdad(contacto, minimumAgeBox.Text.Trim(), true);
                     }
                     else if (matches.Count > 0 && minimumAgeBox.Text.Trim().Length == 0 && txtMaxEdad.Text.Trim().Length > 0)
                     {
-                        ok = comprobarEdad(contacto, txtMaxEdad.Text.Trim(), false);
+                        ok = ComprobarEdad(contacto, txtMaxEdad.Text.Trim(), false);
                     }
                     else if (matches.Count > 0 && minimumAgeBox.Text.Trim().Length > 0 && txtMaxEdad.Text.Trim().Length > 0)
                     {
-                        ok = comprobarEdad(contacto, minimumAgeBox.Text.Trim(), txtMaxEdad.Text.Trim());
+                        ok = ComprobarEdad(contacto, minimumAgeBox.Text.Trim(), txtMaxEdad.Text.Trim());
                     }
                     else if (matches.Count > 0)
                     {
@@ -332,7 +387,7 @@ namespace UserSearch
         /// <param name="edad">La edad introducida al formulario para comparar.</param>
         /// <param name="modoMayor">Determina si estamos buscando mayores que la edad introducida o menos que la edad introducida</param>
         /// <returns>Devuelve true si el contacto tiene la edad correcta. Devuelve false si no cumple.</returns>
-        public Boolean comprobarEdad(Contacto contacto, string edad, Boolean modoMayor)
+        public Boolean ComprobarEdad(Contacto contacto, string edad, Boolean modoMayor)
         {
             Boolean ok = false;
 
@@ -345,13 +400,13 @@ namespace UserSearch
         }
 
         /// <summary>
-        /// Metodo que compara la edad introducida en el formulario con la edad de un contacto.
+        /// Método que compara la edad introducida en el formulario con la edad de un contacto.
         /// </summary>
         /// <param name="contacto">El contacto a analizar.</param>
-        /// <param name="edadMin">La edad minima introducida al formulario para comparar.</param>
-        /// <param name="edadMax">La edad maxima introducida al formulario para comparar.</param>
+        /// <param name="edadMin">La edad mínima introducida al formulario para comparar.</param>
+        /// <param name="edadMax">La edad máxima introducida al formulario para comparar.</param>
         /// <returns>Devuelve true si el contacto tiene la edad correcta. Devuelve false si no cumple.</returns>
-        public Boolean comprobarEdad(Contacto contacto, string edadMin, string edadMax)
+        public Boolean ComprobarEdad(Contacto contacto, string edadMin, string edadMax)
         {
             Boolean ok = false;
 
@@ -364,11 +419,11 @@ namespace UserSearch
         }
 
         /// <summary>
-        /// Muestra mensaje de error con mas de un %
+        /// Muestra mensaje de error con más de un %
         /// </summary>
         /// <param name="control"></param>
         /// <param name="mensaje"></param>
-        private void inputControl(Entry control, String mensaje)
+        private void InputControl(Entry control, String mensaje)
         {
             int edad;
 
