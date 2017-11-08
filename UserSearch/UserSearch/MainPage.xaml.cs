@@ -22,7 +22,6 @@ namespace UserSearch
 
         bool dataHasBeenLoaded = false;
         int indexSelected;
-        bool txtLoaded = false, xmlLoaded = false;
 
         public MainPage()
         {

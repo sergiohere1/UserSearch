@@ -13,11 +13,11 @@
             <StackLayout Orientation="Horizontal">
                 <Label
                x:Name="selectPathLabel" FontSize="14"
-               Text="Seleccione el tipo de Boton: " TextColor="Black"
+               Text="Seleccione el tipo de Fichero: " TextColor="Black"
                HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                WidthRequest="100"/>
 
-                <Picker x:Name="seleccionarTipoFichero" SelectedIndex="0">
+                <Picker x:Name="seleccionarTipoFichero" SelectedIndex="0"  HorizontalOptions="FillAndExpand">
                     <Picker.Items>
                         <x:String>"TXT"</x:String>
                         <x:String>"XML"</x:String>
