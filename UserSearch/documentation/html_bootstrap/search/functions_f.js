@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['readandinsertcontacts',['ReadandInsertContacts',['../class_user_search_1_1_main_page.html#adaddbaab1b6a92001b1d70eb976d4525',1,'UserSearch::MainPage']]],
+  ['readandinsertfromxml',['ReadAndInsertFromXML',['../class_user_search_1_1_main_page.html#aef886ea41633ba130cf240066b052319',1,'UserSearch::MainPage']]],
+  ['realizarbusqueda',['RealizarBusqueda',['../class_user_search_1_1_main_page.html#a176ccd769148aa0bd8c5e1165faf9e52',1,'UserSearch::MainPage']]],
+  ['recyclerview_5fitemanimator_5fitemanimatorfinishedlistenerimplementor',['RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___item_animator___item_animator_finished_listener_implementor.html#a5abc82f3b22b6baa72a8dc7d9b556b42',1,'mono::android::support::v7::widget::RecyclerView_ItemAnimator_ItemAnimatorFinishedListenerImplementor']]],
+  ['recyclerview_5fonchildattachstatechangelistenerimplementor',['RecyclerView_OnChildAttachStateChangeListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___on_child_attach_state_change_listener_implementor.html#a22267a9c06f24536b20977a2da30e96c',1,'mono::android::support::v7::widget::RecyclerView_OnChildAttachStateChangeListenerImplementor']]],
+  ['recyclerview_5fonitemtouchlistenerimplementor',['RecyclerView_OnItemTouchListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___on_item_touch_listener_implementor.html#aafc05230fa3a1f04fdc998c5f6ac2429',1,'mono::android::support::v7::widget::RecyclerView_OnItemTouchListenerImplementor']]],
+  ['recyclerview_5frecyclerlistenerimplementor',['RecyclerView_RecyclerListenerImplementor',['../classmono_1_1android_1_1support_1_1v7_1_1widget_1_1_recycler_view___recycler_listener_implementor.html#afaa895f4a195a43055b9f9e921470743',1,'mono::android::support::v7::widget::RecyclerView_RecyclerListenerImplementor']]],
+  ['registerapplications',['registerApplications',['../classmono_1_1android_1_1app_1_1_application_registration.html#aa4d14d9d7a2c1c57a8ddf959fbb71e47',1,'mono::android::app::ApplicationRegistration']]],
+  ['requestfocus',['requestFocus',['../classmd5b60ffeb829f638581ab2bb9b1a7f4f3f_1_1_editor_edit_text.html#a209907be3186e7a88c89adcbbe20cd17',1,'md5b60ffeb829f638581ab2bb9b1a7f4f3f.EditorEditText.requestFocus()'],['../classmd5b60ffeb829f638581ab2bb9b1a7f4f3f_1_1_entry_edit_text.html#a016f20143c082aa9a41ff9d35301f72a',1,'md5b60ffeb829f638581ab2bb9b1a7f4f3f.EntryEditText.requestFocus()']]],
+  ['resource',['Resource',['../class_user_search_1_1_droid_1_1_resource.html#a9b63bd69af1c66f5716cd26d96405ff1',1,'UserSearch::Droid::Resource']]],
+  ['restorestate',['restoreState',['../classmd5270abb39e60627f0f200893b490a1ade_1_1_forms_fragment_pager_adapter__1.html#a1ca53f9ddc8aa628e82b453c1eecc15c',1,'md5270abb39e60627f0f200893b490a1ade::FormsFragmentPagerAdapter_1']]]
+];

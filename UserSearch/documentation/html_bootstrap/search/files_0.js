@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['actionbar_5fonmenuvisibilitylistenerimplementor_2ejava',['ActionBar_OnMenuVisibilityListenerImplementor.java',['../_action_bar___on_menu_visibility_listener_implementor_8java.html',1,'']]],
+  ['actionbar_5fonnavigationlistenerimplementor_2ejava',['ActionBar_OnNavigationListenerImplementor.java',['../_action_bar___on_navigation_listener_implementor_8java.html',1,'']]],
+  ['actionbar_5ftablistenerimplementor_2ejava',['ActionBar_TabListenerImplementor.java',['../_action_bar___tab_listener_implementor_8java.html',1,'']]],
+  ['actionmenuview_5fonmenuitemclicklistenerimplementor_2ejava',['ActionMenuView_OnMenuItemClickListenerImplementor.java',['../_action_menu_view___on_menu_item_click_listener_implementor_8java.html',1,'']]],
+  ['actionprovider_5fsubuivisibilitylistenerimplementor_2ejava',['ActionProvider_SubUiVisibilityListenerImplementor.java',['../_action_provider___sub_ui_visibility_listener_implementor_8java.html',1,'']]],
+  ['actionprovider_5fvisibilitylistenerimplementor_2ejava',['ActionProvider_VisibilityListenerImplementor.java',['../_action_provider___visibility_listener_implementor_8java.html',1,'']]],
+  ['actionsheetrenderer_2ejava',['ActionSheetRenderer.java',['../_action_sheet_renderer_8java.html',1,'']]],
+  ['activityindicatorrenderer_2ejava',['ActivityIndicatorRenderer.java',['../_activity_indicator_renderer_8java.html',1,'']]],
+  ['ahorizontalscrollview_2ejava',['AHorizontalScrollView.java',['../_a_horizontal_scroll_view_8java.html',1,'']]],
+  ['alertdialog_5fidialoginterfaceoncancellistenerimplementor_2ejava',['AlertDialog_IDialogInterfaceOnCancelListenerImplementor.java',['../_alert_dialog___i_dialog_interface_on_cancel_listener_implementor_8java.html',1,'']]],
+  ['alertdialog_5fidialoginterfaceonclicklistenerimplementor_2ejava',['AlertDialog_IDialogInterfaceOnClickListenerImplementor.java',['../_alert_dialog___i_dialog_interface_on_click_listener_implementor_8java.html',1,'']]],
+  ['alertdialog_5fidialoginterfaceonmultichoiceclicklistenerimplementor_2ejava',['AlertDialog_IDialogInterfaceOnMultiChoiceClickListenerImplementor.java',['../_alert_dialog___i_dialog_interface_on_multi_choice_click_listener_implementor_8java.html',1,'']]],
+  ['androidactivity_2ejava',['AndroidActivity.java',['../_android_activity_8java.html',1,'']]],
+  ['app_2eg_2ecs',['App.g.cs',['../_app_8g_8cs.html',1,'']]],
+  ['app_2eg_2ei_2ecs',['App.g.i.cs',['../_app_8g_8i_8cs.html',1,'']]],
+  ['app_2examl_2ecs',['App.xaml.cs',['../_u_w_p_2_app_8xaml_8cs.html',1,'']]],
+  ['app_2examl_2ecs',['App.xaml.cs',['../_app_8xaml_8cs.html',1,'']]],
+  ['appbarlayout_5fonoffsetchangedlistenerimplementor_2ejava',['AppBarLayout_OnOffsetChangedListenerImplementor.java',['../_app_bar_layout___on_offset_changed_listener_implementor_8java.html',1,'']]],
+  ['appdelegate_2ecs',['AppDelegate.cs',['../_app_delegate_8cs.html',1,'']]],
+  ['applicationregistration_2ejava',['ApplicationRegistration.java',['../_application_registration_8java.html',1,'']]],
+  ['assemblyinfo_2ecs',['AssemblyInfo.cs',['../_u_w_p_2_properties_2_assembly_info_8cs.html',1,'']]],
+  ['assemblyinfo_2ecs',['AssemblyInfo.cs',['../_properties_2_assembly_info_8cs.html',1,'']]],
+  ['assemblyinfo_2ecs',['AssemblyInfo.cs',['../i_o_s_2_properties_2_assembly_info_8cs.html',1,'']]],
+  ['assemblyinfo_2ecs',['AssemblyInfo.cs',['../_android_2_properties_2_assembly_info_8cs.html',1,'']]]
+];
